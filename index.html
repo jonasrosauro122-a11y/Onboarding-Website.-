@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VA Training Pathway</title>
+  <title>VA Onboarding</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -131,7 +131,7 @@
     .nav-sub { font-size: 12px; color: var(--soft); }
     .section { min-height: 100vh; display: flex; align-items: center; padding: 60px 40px 60px 140px; position: relative; }
     .container { width: 100%; max-width: 1280px; margin: 0 auto; }
-    .hero-grid, .client-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: center; }
+    .hero-grid, .client-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 32px; align-items: start; }
     .eyebrow {
       display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px;
       background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); font-size: 13px; margin-bottom: 16px; color: var(--text);
@@ -162,43 +162,38 @@
     .scroll-note { margin-top: 30px; color: var(--soft); font-size: 14px; display: flex; align-items: center; gap: 10px; }
     .scroll-dot { width: 10px; height: 10px; border-radius: 999px; background: var(--cyan); animation: bounce 1.6s infinite; }
     @keyframes bounce { 0%,100%{transform:translateY(0);opacity:.7} 50%{transform:translateY(8px);opacity:1} }
-    .card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-xl); backdrop-filter: blur(16px); box-shadow: var(--shadow); }
-    .card-pad { padding: 28px; }
+    .card, .config-box, .status-box, .mini-card, .week-card, .client-list li, .outcome-box {
+      background: rgba(2, 6, 23, 0.45); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-xl); backdrop-filter: blur(16px); box-shadow: var(--shadow);
+    }
+    .card-pad, .config-box, .status-box, .mini-card, .week-card, .outcome-box { padding: 22px; }
     .card-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
     .section-kicker { font-size: 11px; text-transform: uppercase; letter-spacing: 0.28em; color: var(--soft); margin-bottom: 8px; }
     .icon-box { width: 54px; height: 54px; display: grid; place-items: center; border-radius: 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.1); font-size: 24px; }
     .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .mini-card,.week-card,.client-list li,.outcome-box,.status-box,.config-box { background: rgba(2, 6, 23, 0.45); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; }
-    .mini-card, .config-box, .status-box { padding: 20px; }
     .mini-card h4, .outcome-box h4, .config-box h4, .status-box h4 { font-size: 15px; margin-bottom: 10px; color: var(--text); }
-    .mini-card p, .outcome-box p, .client-copy, .client-list span, .week-list li, .week-meta p, .config-box p, .status-box p {
+    .mini-card p, .outcome-box p, .client-copy, .client-list span, .week-list li, .week-meta p, .config-box p, .status-box p, .helper {
       color: var(--muted); line-height: 1.8; font-size: 14px;
     }
     .stack { display: grid; gap: 16px; }
     .config-grid { display: grid; gap: 12px; margin-top: 16px; }
-    .input, .select {
+    .input {
       width: 100%; border-radius: 14px; padding: 12px 14px; background: rgba(255,255,255,0.08); color: white;
       border: 1px solid rgba(255,255,255,0.14); font: inherit;
     }
-    .input::placeholder { color: #cbd5e1; }
-    .helper { color: var(--soft); font-size: 12px; line-height: 1.7; }
-    .config-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .small-btn, .upload-btn, .viewer-btn {
+    .upload-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
+    .upload-btn, .viewer-btn, .small-btn {
       border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.08); color: var(--text);
       border-radius: 14px; padding: 10px 14px; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s ease;
+      text-decoration: none; display: inline-flex; align-items: center; justify-content: center;
     }
-    .small-btn:hover, .upload-btn:hover, .viewer-btn:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
-    .small-btn.primary, .upload-btn.primary { background: white; color: #0f172a; }
-    .status-text { font-size: 13px; color: var(--soft); }
+    .upload-btn.primary, .small-btn.primary { background: white; color: #0f172a; }
+    .upload-btn:hover, .viewer-btn:hover, .small-btn:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
+    .file-name, .status-text, .zoom-status { color: var(--soft); font-size: 13px; line-height: 1.6; word-break: break-word; }
     .status-text.error { color: var(--danger); }
     .status-text.success { color: var(--success); }
     .image-placeholder {
       margin-top: 18px; padding: 24px; border-radius: 26px; background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(255,255,255,0.04)); border: 1px dashed rgba(103,232,249,0.28);
     }
-    .image-placeholder h4 { margin-bottom: 10px; }
-    .image-placeholder p { color: var(--muted); line-height: 1.8; font-size: 14px; }
-    .upload-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; align-items: center; }
-    .file-name { color: var(--soft); font-size: 13px; line-height: 1.6; word-break: break-word; }
     .image-box {
       margin-top: 18px; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
       min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 24px; color: var(--soft); line-height: 1.8; position: relative;
@@ -206,18 +201,15 @@
     .viewer-stage { width: 100%; min-height: 420px; height: 56vh; max-height: 760px; border-radius: 18px; overflow: auto; background: rgba(2, 6, 23, 0.65); display: none; position: relative; }
     .viewer-stage.active { display: block; }
     .viewer-placeholder { max-width: 620px; }
-    .viewer-placeholder strong { color: var(--text); }
     .viewer-image { display: block; margin: 0 auto; max-width: 100%; transform-origin: center top; transition: transform 0.2s ease; }
     .viewer-pdf { width: 100%; height: 100%; min-height: 420px; border: 0; background: #fff; }
     .viewer-controls { display: none; flex-wrap: wrap; gap: 10px; margin-top: 14px; align-items: center; }
     .viewer-controls.active { display: flex; }
-    .zoom-status { color: var(--soft); font-size: 13px; font-weight: 600; padding: 0 2px; }
     .timeline-wrap { position: relative; margin-top: 34px; }
     .timeline-line { position: absolute; left: 22px; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, rgba(192,132,252,0), rgba(192,132,252,0.45), rgba(192,132,252,0)); }
     .week-row { position: relative; padding-left: 70px; margin-bottom: 24px; }
     .week-row:last-child { margin-bottom: 0; }
     .timeline-dot { position: absolute; left: 14px; top: 34px; width: 18px; height: 18px; border-radius: 999px; background: var(--violet); border: 4px solid #0b1324; box-shadow: 0 0 0 10px rgba(192,132,252,0.08); }
-    .week-card { padding: 26px; }
     .week-grid { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 24px; }
     .week-tag { display: inline-flex; padding: 10px 16px; border-radius: 999px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.25em; color: #ead5ff; background: rgba(168,85,247,0.1); border: 1px solid rgba(192,132,252,0.22); margin-bottom: 18px; }
     .week-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -227,7 +219,7 @@
     .client-list li::before { color: var(--emerald); }
     .client-copy { max-width: 760px; margin-top: 22px; font-size: 18px; }
     .client-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
-    .outcome-box { margin-top: 18px; padding: 22px; background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(255,255,255,0.04)); border-color: rgba(110,231,183,0.22); }
+    .outcome-box { margin-top: 18px; background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(255,255,255,0.04)); border-color: rgba(110,231,183,0.22); }
     .reveal { opacity: 0; transform: translateY(42px); transition: opacity 0.8s ease, transform 0.8s ease; will-change: opacity, transform; }
     .reveal.show { opacity: 1; transform: translateY(0); }
     .footer-note { text-align: center; padding: 24px 20px 40px; color: var(--soft); font-size: 13px; }
@@ -246,7 +238,6 @@
       .nav-item { margin: 0; justify-content: center; padding: 10px; }
       .nav-item.active::before, .nav-title, .nav-text { display: none; }
       .nav-icon { width: 40px; min-width: 40px; height: 40px; }
-      .card-pad, .week-card { padding: 20px; }
       .timeline-line, .timeline-dot { display: none; }
       .week-row { padding-left: 0; }
       .actions { flex-direction: column; align-items: stretch; }
@@ -279,9 +270,7 @@
         <div class="reveal">
           <div class="eyebrow cyan">✨ Interactive Training Presentation</div>
           <h1>VA Training Pathway <span class="gradient-text">from Onboarding to Client Support</span></h1>
-          <p class="lead">
-            This standalone website now uses Supabase so the onboarding PDF or image is saved online. When someone opens the shared website link, they will see the same uploaded file automatically.
-          </p>
+          <p class="lead">This version saves first-section files into separate Supabase folders. Photos go to <strong>onboarding/images</strong>, PDFs go to <strong>onboarding/pdfs</strong>, and your second section images go to <strong>timeline/images</strong>.</p>
           <div class="actions">
             <a class="btn btn-primary" href="#timeline">Explore the Flow →</a>
             <a class="btn btn-secondary" href="#client">View Final Stage</a>
@@ -305,26 +294,23 @@
                 <p>Introduce the VA to the company, work expectations, communication flow, tools, and the direction of the overall training program.</p>
               </div>
               <div class="mini-card">
-                <h4>Shared Viewer</h4>
-                <p>The file shown below is loaded from Supabase Storage, so viewers of your shared website will see the same PDF or image.</p>
+                <h4>Folder Route</h4>
+                <p>First section uploads now save by type. Images are routed to <strong>onboarding/images</strong> and PDFs are routed to <strong>onboarding/pdfs</strong>.</p>
               </div>
             </div>
 
             <div class="image-placeholder">
               <h4>Upload your photo or PDF for client presentation</h4>
-              <p>Choose an image file or PDF and it will upload to Supabase, save the current onboarding media record, and instantly appear in the website for everyone who visits the page.</p>
+              <p>When you upload a file here, it is saved in the right folder automatically and everyone who opens the shared website can view it.</p>
 
               <div class="upload-toolbar">
-                <label class="upload-btn primary" for="presentationUpload">Upload to Supabase</label>
+                <label class="upload-btn primary" for="presentationUpload">Upload Onboarding File</label>
                 <input id="presentationUpload" type="file" accept="image/*,.pdf,application/pdf" hidden />
-                <div class="file-name" id="fileName">No shared file uploaded yet.</div>
+                <div class="file-name" id="fileName">No shared onboarding file uploaded yet.</div>
               </div>
 
-              <div class="image-box" id="imageBox">
-                <div class="viewer-placeholder" id="viewerPlaceholder">
-                  Loading current onboarding media.<br><br>
-                  Supported files: <strong>Photo</strong> or <strong>PDF</strong>
-                </div>
+              <div class="image-box">
+                <div class="viewer-placeholder" id="viewerPlaceholder">Loading current onboarding media.<br><br>Supported files: <strong>Photo</strong> or <strong>PDF</strong></div>
                 <div class="viewer-stage" id="viewerStage"></div>
               </div>
 
@@ -341,12 +327,12 @@
 
           <div class="config-box">
             <h4>Supabase setup</h4>
-            <p>Edit the two constants near the top of the script and paste your real Supabase project URL and anon key before publishing to GitHub or Netlify.</p>
+            <p>Replace the two constants inside the script with your real Supabase project URL and anon key before deploying.</p>
             <div class="config-grid">
               <input class="input" value="const DEFAULT_SUPABASE_URL = 'YOUR_SUPABASE_URL';" readonly />
               <input class="input" value="const DEFAULT_SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';" readonly />
             </div>
-            <p class="helper">Bucket name is set to <strong>training-assets</strong> and the page record key is <strong>onboarding_media</strong>. Once you replace the two placeholders and deploy the page, shared visitors will see the uploaded file automatically.</p>
+            <p class="helper">Bucket name is <strong>training-assets</strong>. This site uses three save routes: <strong>onboarding/images</strong>, <strong>onboarding/pdfs</strong>, and <strong>timeline/images</strong>.</p>
           </div>
 
           <div class="status-box">
@@ -362,8 +348,23 @@
         <div class="reveal">
           <div class="eyebrow violet">🗓️ Section 02</div>
           <h2>3-Week Training Timeline</h2>
-          <p class="lead">This section clearly shows how the VA develops over three weeks. It gives the client a visual understanding of the training journey, the knowledge being built, and how the VA becomes ready for live support.</p>
+          <p class="lead">This section now has its own image uploader. It accepts PNG, JPG, JPEG, WEBP, and other image files and saves them in the <strong>timeline/images</strong> folder.</p>
         </div>
+
+        <div class="config-box reveal" style="margin-top: 26px; margin-bottom: 26px;">
+          <h4>Timeline image uploader</h4>
+          <p>Upload a second-section image here. It will be saved in Supabase under <strong>timeline/images</strong> and shown automatically when the shared page opens.</p>
+          <div class="upload-toolbar">
+            <label class="upload-btn primary" for="timelineImageUpload">Upload Timeline Image</label>
+            <input id="timelineImageUpload" type="file" accept="image/png,image/jpeg,image/jpg,image/webp,image/*" hidden />
+            <div class="file-name" id="timelineFileName">No timeline image uploaded yet.</div>
+          </div>
+          <div class="image-box">
+            <div class="viewer-placeholder" id="timelineViewerPlaceholder">No timeline image loaded yet.<br><br>Supported files: <strong>PNG</strong>, <strong>JPG</strong>, <strong>JPEG</strong>, <strong>WEBP</strong></div>
+            <div class="viewer-stage" id="timelineViewerStage"></div>
+          </div>
+        </div>
+
         <div class="timeline-wrap">
           <div class="timeline-line"></div>
           <div class="week-row reveal"><div class="timeline-dot"></div><div class="week-card"><div class="week-grid"><div class="week-meta"><div class="week-tag">Week 1</div><h3>Foundation & Insurance Basics</h3><p>The first week focuses on orientation, core insurance understanding, terminology, and introducing the VA to the work environment and basic processes.</p></div><ul class="week-list"><li>Company orientation and VA expectations</li><li>Insurance fundamentals and common terminology</li><li>System familiarization and workflow introduction</li><li>Professional communication and documentation habits</li></ul></div></div></div>
@@ -398,7 +399,7 @@
       </div>
     </section>
 
-    <div class="footer-note">Standalone single-file website • Shared onboarding media powered by Supabase Storage</div>
+    <div class="footer-note">Standalone single-file website • Shared section folders powered by Supabase Storage</div>
   </div>
 
   <script type="module">
@@ -408,10 +409,12 @@
     const DEFAULT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imphb256YXdtZndyaWtpZWJobHhhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NzU0NjQsImV4cCI6MjA5MzA1MTQ2NH0.D5XZkNNGaJ_gLHQt5VmzZ8waFKdI29lL-yu3UGRgHz4';
     const BUCKET_NAME = 'training-assets';
     const SECTION_KEY = 'onboarding_media';
+    const TIMELINE_SECTION_KEY = 'timeline_image';
 
     const navItems = document.querySelectorAll('.nav-item');
     const sections = document.querySelectorAll('.section');
     const revealEls = document.querySelectorAll('.reveal');
+
     const uploadInput = document.getElementById('presentationUpload');
     const fileName = document.getElementById('fileName');
     const viewerStage = document.getElementById('viewerStage');
@@ -424,7 +427,11 @@
     const fullScreenBtn = document.getElementById('fullScreenBtn');
     const openFileBtn = document.getElementById('openFileBtn');
     const statusText = document.getElementById('statusText');
-    
+
+    const timelineImageUpload = document.getElementById('timelineImageUpload');
+    const timelineFileName = document.getElementById('timelineFileName');
+    const timelineViewerStage = document.getElementById('timelineViewerStage');
+    const timelineViewerPlaceholder = document.getElementById('timelineViewerPlaceholder');
 
     let supabase = null;
     let currentPublicUrl = '';
@@ -441,21 +448,6 @@
       return name.toLowerCase().replace(/[^a-z0-9.\-_]+/g, '-');
     }
 
-    function getRuntimeConfig() {
-      const storedUrl = localStorage.getItem('training_pathway_supabase_url') || '';
-      const storedAnonKey = localStorage.getItem('training_pathway_supabase_anon_key') || '';
-
-      const url = DEFAULT_SUPABASE_URL && DEFAULT_SUPABASE_URL !== 'YOUR_SUPABASE_URL'
-        ? DEFAULT_SUPABASE_URL
-        : storedUrl;
-
-      const anonKey = DEFAULT_SUPABASE_ANON_KEY && DEFAULT_SUPABASE_ANON_KEY !== 'YOUR_SUPABASE_ANON_KEY'
-        ? DEFAULT_SUPABASE_ANON_KEY
-        : storedAnonKey;
-
-      return { url, anonKey };
-    }
-
     function clearViewer() {
       viewerStage.innerHTML = '';
       viewerStage.classList.remove('active');
@@ -468,6 +460,12 @@
       zoomStatus.textContent = '100%';
       openFileBtn.style.display = 'none';
       openFileBtn.removeAttribute('href');
+    }
+
+    function clearTimelineViewer() {
+      timelineViewerStage.innerHTML = '';
+      timelineViewerStage.classList.remove('active');
+      timelineViewerPlaceholder.style.display = 'block';
     }
 
     function showControls(url) {
@@ -522,15 +520,32 @@
       }
     }
 
+    function renderTimelineImage(fileUrl, displayName = 'Shared timeline image') {
+      clearTimelineViewer();
+      if (!fileUrl) {
+        timelineViewerPlaceholder.innerHTML = 'No timeline image found yet.<br><br>Upload a PNG or JPG to publish it here.';
+        return;
+      }
+
+      timelineFileName.textContent = displayName;
+      timelineViewerPlaceholder.style.display = 'none';
+      timelineViewerStage.classList.add('active');
+
+      const img = document.createElement('img');
+      img.className = 'viewer-image';
+      img.alt = 'Shared timeline image';
+      img.src = fileUrl;
+      timelineViewerStage.appendChild(img);
+    }
+
     async function loadCurrentMedia() {
       if (!supabase) return;
-      setStatus('Loading shared onboarding media...', '');
+      setStatus('Loading shared onboarding and timeline media...', '');
 
       const { data, error } = await supabase
         .from('site_settings')
-        .select('file_path, file_type, file_name')
-        .eq('section_key', SECTION_KEY)
-        .maybeSingle();
+        .select('section_key, file_path, file_type, file_name')
+        .in('section_key', [SECTION_KEY, TIMELINE_SECTION_KEY]);
 
       if (error) {
         setStatus(`Could not load site settings: ${error.message}`, 'error');
@@ -538,33 +553,39 @@
         return;
       }
 
-      if (!data?.file_path) {
-        setStatus('Connected to Supabase. No shared onboarding file is saved yet.', 'success');
+      const onboardingRecord = data?.find((item) => item.section_key === SECTION_KEY);
+      const timelineRecord = data?.find((item) => item.section_key === TIMELINE_SECTION_KEY);
+
+      if (!onboardingRecord?.file_path) {
         viewerPlaceholder.innerHTML = 'Connected to Supabase.<br><br>No shared onboarding file has been uploaded yet.';
-        fileName.textContent = 'No shared file uploaded yet.';
-        return;
+        fileName.textContent = 'No shared onboarding file uploaded yet.';
+      } else {
+        const { data: publicData } = supabase.storage.from(BUCKET_NAME).getPublicUrl(onboardingRecord.file_path);
+        renderSharedFile(publicData.publicUrl, onboardingRecord.file_type || 'image', onboardingRecord.file_name || 'Shared onboarding file');
       }
 
-      const { data: publicData } = supabase.storage.from(BUCKET_NAME).getPublicUrl(data.file_path);
-      renderSharedFile(publicData.publicUrl, data.file_type || 'image', data.file_name || 'Shared onboarding file');
-      setStatus('Shared onboarding media loaded successfully.', 'success');
+      if (!timelineRecord?.file_path) {
+        timelineViewerPlaceholder.innerHTML = 'Connected to Supabase.<br><br>No timeline image has been uploaded yet.';
+        timelineFileName.textContent = 'No timeline image uploaded yet.';
+      } else {
+        const { data: timelinePublicData } = supabase.storage.from(BUCKET_NAME).getPublicUrl(timelineRecord.file_path);
+        renderTimelineImage(timelinePublicData.publicUrl, timelineRecord.file_name || 'Shared timeline image');
+      }
+
+      setStatus('Shared onboarding and timeline media loaded successfully.', 'success');
     }
 
     function initializeSupabase() {
-      const { url, anonKey } = getRuntimeConfig();
-
-      if (!url || !anonKey) {
-        supabase = null;
-        setStatus('Add your real Supabase URL and anon key in the script before publishing.', 'error');
+      if (!DEFAULT_SUPABASE_URL || DEFAULT_SUPABASE_URL === 'YOUR_SUPABASE_URL' || !DEFAULT_SUPABASE_ANON_KEY || DEFAULT_SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY') {
+        setStatus('Replace the Supabase URL and anon key placeholders in the script before deploying.', 'error');
         return;
       }
 
       try {
-        supabase = createClient(url, anonKey);
+        supabase = createClient(DEFAULT_SUPABASE_URL, DEFAULT_SUPABASE_ANON_KEY);
         setStatus('Supabase configuration loaded. Connecting...', 'success');
         loadCurrentMedia();
       } catch (error) {
-        supabase = null;
         setStatus(`Invalid Supabase configuration: ${error.message}`, 'error');
       }
     }
@@ -572,26 +593,23 @@
     async function handleUpload(event) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
-
       if (!supabase) {
-        setStatus('Add your Supabase URL and anon key first.', 'error');
+        setStatus('Supabase is not configured yet.', 'error');
         return;
       }
 
       const fileType = (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) ? 'pdf' : 'image';
-      const extension = file.name.includes('.') ? file.name.split('.').pop() : (fileType === 'pdf' ? 'pdf' : 'png');
-      const filePath = `onboarding/${Date.now()}-${sanitizeFileName(file.name || `upload.${extension}`)}`;
+      const folder = fileType === 'pdf' ? 'onboarding/pdfs' : 'onboarding/images';
+      const filePath = `${folder}/${Date.now()}-${sanitizeFileName(file.name)}`;
 
       fileName.textContent = `Uploading ${file.name}...`;
-      setStatus('Uploading file to Supabase Storage...', '');
+      setStatus(`Uploading onboarding file to ${folder}...`, '');
 
-      const { error: uploadError } = await supabase.storage
-        .from(BUCKET_NAME)
-        .upload(filePath, file, {
-          cacheControl: '3600',
-          contentType: file.type || (fileType === 'pdf' ? 'application/pdf' : 'image/*'),
-          upsert: false,
-        });
+      const { error: uploadError } = await supabase.storage.from(BUCKET_NAME).upload(filePath, file, {
+        cacheControl: '3600',
+        contentType: file.type || (fileType === 'pdf' ? 'application/pdf' : 'image/*'),
+        upsert: false,
+      });
 
       if (uploadError) {
         fileName.textContent = 'Upload failed.';
@@ -599,16 +617,14 @@
         return;
       }
 
-      const { error: dbError } = await supabase
-        .from('site_settings')
-        .upsert({
-          section_key: SECTION_KEY,
-          bucket_name: BUCKET_NAME,
-          file_path: filePath,
-          file_type: fileType,
-          file_name: file.name,
-          updated_at: new Date().toISOString(),
-        }, { onConflict: 'section_key' });
+      const { error: dbError } = await supabase.from('site_settings').upsert({
+        section_key: SECTION_KEY,
+        bucket_name: BUCKET_NAME,
+        file_path: filePath,
+        file_type: fileType,
+        file_name: file.name,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'section_key' });
 
       if (dbError) {
         fileName.textContent = 'Upload saved, but record update failed.';
@@ -618,7 +634,57 @@
 
       const { data: publicData } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath);
       renderSharedFile(publicData.publicUrl, fileType, file.name);
-      setStatus('Upload complete. Everyone who opens the website will now see this file.', 'success');
+      setStatus(`Upload complete. Onboarding file saved in ${folder} and shared successfully.`, 'success');
+    }
+
+    async function handleTimelineImageUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      if (!supabase) {
+        setStatus('Supabase is not configured yet.', 'error');
+        return;
+      }
+      if (!file.type.startsWith('image/')) {
+        setStatus('Second section only accepts image files like PNG or JPG.', 'error');
+        return;
+      }
+
+      const folder = 'timeline/images';
+      const filePath = `${folder}/${Date.now()}-${sanitizeFileName(file.name)}`;
+
+      timelineFileName.textContent = `Uploading ${file.name}...`;
+      setStatus(`Uploading timeline image to ${folder}...`, '');
+
+      const { error: uploadError } = await supabase.storage.from(BUCKET_NAME).upload(filePath, file, {
+        cacheControl: '3600',
+        contentType: file.type || 'image/*',
+        upsert: false,
+      });
+
+      if (uploadError) {
+        timelineFileName.textContent = 'Timeline upload failed.';
+        setStatus(`Timeline upload failed: ${uploadError.message}`, 'error');
+        return;
+      }
+
+      const { error: dbError } = await supabase.from('site_settings').upsert({
+        section_key: TIMELINE_SECTION_KEY,
+        bucket_name: BUCKET_NAME,
+        file_path: filePath,
+        file_type: 'image',
+        file_name: file.name,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'section_key' });
+
+      if (dbError) {
+        timelineFileName.textContent = 'Timeline upload saved, but record update failed.';
+        setStatus(`Timeline image uploaded, but database update failed: ${dbError.message}`, 'error');
+        return;
+      }
+
+      const { data: publicData } = supabase.storage.from(BUCKET_NAME).getPublicUrl(filePath);
+      renderTimelineImage(publicData.publicUrl, file.name);
+      setStatus(`Timeline image saved in ${folder} and shared successfully.`, 'success');
     }
 
     navItems.forEach((item) => {
@@ -670,6 +736,7 @@
     });
 
     uploadInput.addEventListener('change', handleUpload);
+    timelineImageUpload.addEventListener('change', handleTimelineImageUpload);
 
     initializeSupabase();
   </script>
