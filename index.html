@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VA Training Pathway</title>
+  <style>
+    :root {
+      --bg-1: #07111f;
+      --bg-2: #0b1324;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --cyan: #67e8f9;
+      --violet: #c084fc;
+      --emerald: #6ee7b7;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius-xl: 28px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: url('images/red-gradient-bg.jpg') center/cover no-repeat fixed;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(70px);
+      z-index: 0;
+      opacity: 0.65;
+      pointer-events: none;
+      animation: floatBlob 12s ease-in-out infinite;
+    }
+
+    body::before {
+      width: 260px;
+      height: 260px;
+      background: rgba(34, 211, 238, 0.14);
+      left: 6%;
+      top: 10%;
+    }
+
+    body::after {
+      width: 320px;
+      height: 320px;
+      background: rgba(168, 85, 247, 0.14);
+      right: 8%;
+      top: 18%;
+      animation-duration: 15s;
+    }
+
+    @keyframes floatBlob {
+      0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+      50% { transform: translateY(18px) translateX(12px) scale(1.05); }
+    }
+
+    .page { position: relative; z-index: 1; }
+
+    .side-nav {
+      position: fixed;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 50;
+      width: 86px;
+      transition: width 0.3s ease;
+    }
+
+    .side-nav:hover { width: 250px; }
+
+    .nav-shell {
+      background: rgba(2, 6, 23, 0.55);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(18px);
+      border-radius: 28px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--cyan);
+      margin: 4px 8px 14px;
+      white-space: nowrap;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .side-nav:hover .nav-title { opacity: 1; }
+
+    .nav-item {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 0;
+      border-radius: 20px;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: 0.25s ease;
+      position: relative;
+      text-align: left;
+    }
+
+    .nav-item:hover {
+      background: rgba(255,255,255,0.08);
+      transform: translateX(2px);
+    }
+
+    .nav-item.active {
+      background: rgba(255,255,255,0.12);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.08);
+    }
+
+    .nav-item.active::before {
+      content: "";
+      position: absolute;
+      left: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 34px;
+      border-radius: 999px;
+      background: var(--cyan);
+    }
+
+    .nav-icon {
+      min-width: 42px;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 18px;
+    }
+
+    .nav-text {
+      min-width: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .side-nav:hover .nav-text { opacity: 1; }
+    .nav-label { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .nav-sub { font-size: 12px; color: var(--soft); }
+
+    .section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 40px 60px 140px;
+      position: relative;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-grid,
+    .client-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 13px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .eyebrow.cyan { color: #b6f5ff; border-color: rgba(103,232,249,0.22); background: rgba(34,211,238,0.08); }
+    .eyebrow.violet { color: #ead5ff; border-color: rgba(192,132,252,0.22); background: rgba(168,85,247,0.08); }
+    .eyebrow.emerald { color: #d1fae5; border-color: rgba(110,231,183,0.22); background: rgba(16,185,129,0.08); }
+
+    h1, h2, h3, h4 { margin: 0; line-height: 1.08; }
+    h1 { font-size: clamp(40px, 7vw, 78px); max-width: 820px; }
+    h2 { font-size: clamp(34px, 5vw, 62px); max-width: 900px; }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #9ae6ff 0%, #c4b5fd 55%, #86efac 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.9;
+      max-width: 760px;
+      margin-top: 22px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .btn {
+      border: 0;
+      cursor: pointer;
+      padding: 14px 24px;
+      border-radius: 18px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.25s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-primary { background: #ffffff; color: #0f172a; }
+    .btn-primary:hover { transform: translateY(-2px); }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: #ffffff;
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+
+    .scroll-note {
+      margin-top: 30px;
+      color: var(--soft);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .scroll-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--cyan);
+      animation: bounce 1.6s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); opacity: 0.7; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .card-pad { padding: 28px; }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--soft);
+      margin-bottom: 8px;
+    }
+
+    .icon-box {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      font-size: 24px;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .mini-card,
+    .week-card,
+    .client-list li,
+    .outcome-box {
+      background: rgba(2, 6, 23, 0.38);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px;
+    }
+
+    .mini-card { padding: 20px; }
+    .mini-card h4, .outcome-box h4 { font-size: 15px; margin-bottom: 10px; color: var(--text); }
+    .mini-card p, .outcome-box p, .client-copy, .client-list span, .week-list li, .week-meta p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .image-placeholder {
+      margin-top: 18px;
+      padding: 24px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(34,211,238,0.12), rgba(255,255,255,0.04));
+      border: 1px dashed rgba(103,232,249,0.28);
+    }
+
+    .image-placeholder h4 { margin-bottom: 10px; }
+    .image-placeholder p { color: var(--muted); line-height: 1.8; font-size: 14px; }
+
+    .upload-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+      align-items: center;
+    }
+
+    .upload-btn,
+    .viewer-btn {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .upload-btn:hover,
+    .viewer-btn:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-1px);
+    }
+
+    .file-name {
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.6;
+      word-break: break-word;
+    }
+
+    .image-box {
+      margin-top: 18px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      color: var(--soft);
+      line-height: 1.8;
+      position: relative;
+    }
+
+    .viewer-stage {
+      width: 100%;
+      min-height: 420px;
+      height: 56vh;
+      max-height: 760px;
+      border-radius: 18px;
+      overflow: auto;
+      background: rgba(2, 6, 23, 0.65);
+      display: none;
+      position: relative;
+    }
+
+    .viewer-stage.active {
+      display: block;
+    }
+
+    .viewer-placeholder {
+      max-width: 620px;
+    }
+
+    .viewer-placeholder strong {
+      color: var(--text);
+    }
+
+    .viewer-image {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      transform-origin: center top;
+      transition: transform 0.2s ease;
+    }
+
+    .viewer-pdf {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: 0;
+      background: #fff;
+    }
+
+    .viewer-controls {
+      display: none;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+    }
+
+    .viewer-controls.active {
+      display: flex;
+    }
+
+    .zoom-status {
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0 2px;
+    }
+
+    .timeline-wrap { position: relative; margin-top: 34px; }
+    .timeline-line {
+      position: absolute;
+      left: 22px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(192,132,252,0), rgba(192,132,252,0.45), rgba(192,132,252,0));
+    }
+
+    .week-row { position: relative; padding-left: 70px; margin-bottom: 24px; }
+    .week-row:last-child { margin-bottom: 0; }
+
+    .timeline-dot {
+      position: absolute;
+      left: 14px;
+      top: 34px;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: var(--violet);
+      border: 4px solid #0b1324;
+      box-shadow: 0 0 0 10px rgba(192,132,252,0.08);
+    }
+
+    .week-card { padding: 26px; }
+    .week-grid {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 24px;
+    }
+
+    .week-tag {
+      display: inline-flex;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: #ead5ff;
+      background: rgba(168,85,247,0.1);
+      border: 1px solid rgba(192,132,252,0.22);
+      margin-bottom: 18px;
+    }
+
+    .week-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .week-list li,
+    .client-list li {
+      padding: 16px 18px;
+      position: relative;
+      padding-left: 42px;
+    }
+
+    .week-list li::before,
+    .client-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      font-weight: 900;
+    }
+
+    .week-list li::before { color: var(--violet); }
+    .client-list li::before { color: var(--emerald); }
+
+    .client-copy {
+      max-width: 760px;
+      margin-top: 22px;
+      font-size: 18px;
+    }
+
+    .client-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .outcome-box {
+      margin-top: 18px;
+      padding: 22px;
+      background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(255,255,255,0.04));
+      border-color: rgba(110,231,183,0.22);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(42px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer-note {
+      text-align: center;
+      padding: 24px 20px 40px;
+      color: var(--soft);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero-grid, .client-grid, .week-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .side-nav { left: 12px; width: 70px; }
+      .side-nav:hover { width: 70px; }
+      .nav-title, .nav-text, .side-nav:hover .nav-text, .side-nav:hover .nav-title { opacity: 0; display: none; }
+      .section { padding: 84px 22px 60px 96px; }
+      .mini-grid, .week-list { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 84px 18px 46px 18px; }
+      .side-nav {
+        top: auto;
+        bottom: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100% - 24px);
+      }
+      .nav-shell {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        padding: 10px;
+        border-radius: 24px;
+      }
+      .nav-item { margin: 0; justify-content: center; padding: 10px; }
+      .nav-item.active::before, .nav-title, .nav-text { display: none; }
+      .nav-icon { width: 40px; min-width: 40px; height: 40px; }
+      .card-pad, .week-card { padding: 20px; }
+      .timeline-line, .timeline-dot { display: none; }
+      .week-row { padding-left: 0; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="side-nav">
+      <div class="nav-shell">
+        <div class="nav-title">Training Pathway</div>
+        <button class="nav-item active" data-target="onboarding">
+          <div class="nav-icon">👋</div>
+          <div class="nav-text">
+            <div class="nav-label">Onboarding</div>
+            <div class="nav-sub">Training introduction</div>
+          </div>
+        </button>
+        <button class="nav-item" data-target="timeline">
+          <div class="nav-icon">🗓️</div>
+          <div class="nav-text">
+            <div class="nav-label">Timeline</div>
+            <div class="nav-sub">3-week roadmap</div>
+          </div>
+        </button>
+        <button class="nav-item" data-target="client">
+          <div class="nav-icon">💼</div>
+          <div class="nav-text">
+            <div class="nav-label">Working with Client</div>
+            <div class="nav-sub">Transition stage</div>
+          </div>
+        </button>
+      </div>
+    </nav>
+
+    <section class="section" id="onboarding">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow cyan">✨ Interactive Training Presentation</div>
+          <h1>
+            VA Training Pathway
+            <span class="gradient-text">from Onboarding to Client Support</span>
+          </h1>
+          <p class="lead">
+            This standalone website presents the full training flow of the virtual assistant journey in a clean,
+            modern, and client-ready format. It starts with onboarding, continues through the 3-week training timeline,
+            and ends with the transition into client-led working support.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#timeline">Explore the Flow →</a>
+            <a class="btn btn-secondary" href="#client">View Final Stage</a>
+          </div>
+          <div class="scroll-note">
+            <span class="scroll-dot"></span>
+            Scroll down to reveal each section with fade animation
+          </div>
+        </div>
+
+        <div class="card card-pad reveal">
+          <div class="card-header">
+            <div>
+              <div class="section-kicker">Section 01</div>
+              <h3>Onboarding</h3>
+            </div>
+            <div class="icon-box">👤</div>
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-card">
+              <h4>Purpose</h4>
+              <p>
+                Introduce the VA to the company, work expectations, communication flow, tools, and the direction of the
+                overall training program.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h4>Client Presentation</h4>
+              <p>
+                This section is ready for your onboarding visual so you can present the training process to your client
+                in a more professional and visual way.
+              </p>
+            </div>
+          </div>
+
+          <div class="image-placeholder">
+            <h4>Upload your photo or PDF for client presentation</h4>
+            <p>
+              Choose an image file or PDF and it will appear directly inside the website. You can also zoom in, zoom out,
+              reset the zoom, and open the viewer in full screen.
+            </p>
+
+            <div class="upload-toolbar">
+              <label class="upload-btn" for="presentationUpload">Upload Photo or PDF</label>
+              <input id="presentationUpload" type="file" accept="image/*,.pdf,application/pdf" hidden />
+              <div class="file-name" id="fileName">No file selected yet.</div>
+            </div>
+
+            <div class="image-box" id="imageBox">
+              <div class="viewer-placeholder" id="viewerPlaceholder">
+                Upload your onboarding file here.<br><br>
+                Supported files: <strong>Photo</strong> or <strong>PDF</strong>
+              </div>
+              <div class="viewer-stage" id="viewerStage"></div>
+            </div>
+
+            <div class="viewer-controls" id="viewerControls">
+              <button type="button" class="viewer-btn" id="zoomOutBtn">Zoom Out</button>
+              <button type="button" class="viewer-btn" id="zoomInBtn">Zoom In</button>
+              <button type="button" class="viewer-btn" id="resetZoomBtn">Reset</button>
+              <button type="button" class="viewer-btn" id="fullScreenBtn">Full Screen</button>
+              <div class="zoom-status" id="zoomStatus">100%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="timeline">
+      <div class="container">
+        <div class="reveal">
+          <div class="eyebrow violet">🗓️ Section 02</div>
+          <h2>3-Week Training Timeline</h2>
+          <p class="lead">
+            This section clearly shows how the VA develops over three weeks. It gives the client a visual understanding
+            of the training journey, the knowledge being built, and how the VA becomes ready for live support.
+          </p>
+        </div>
+
+        <div class="timeline-wrap">
+          <div class="timeline-line"></div>
+
+          <div class="week-row reveal">
+            <div class="timeline-dot"></div>
+            <div class="week-card">
+              <div class="week-grid">
+                <div class="week-meta">
+                  <div class="week-tag">Week 1</div>
+                  <h3>Foundation & Insurance Basics</h3>
+                  <p>
+                    The first week focuses on orientation, core insurance understanding, terminology, and introducing
+                    the VA to the work environment and basic processes.
+                  </p>
+                </div>
+                <ul class="week-list">
+                  <li>Company orientation and VA expectations</li>
+                  <li>Insurance fundamentals and common terminology</li>
+                  <li>System familiarization and workflow introduction</li>
+                  <li>Professional communication and documentation habits</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="week-row reveal">
+            <div class="timeline-dot"></div>
+            <div class="week-card">
+              <div class="week-grid">
+                <div class="week-meta">
+                  <div class="week-tag">Week 2</div>
+                  <h3>Tools, Process, and Guided Practice</h3>
+                  <p>
+                    The second week is more practical. The VA starts applying knowledge using systems, workflows,
+                    training tasks, and guided exercises.
+                  </p>
+                </div>
+                <ul class="week-list">
+                  <li>AMS and carrier system navigation</li>
+                  <li>Task simulations and accuracy exercises</li>
+                  <li>Email handling, follow-ups, and checklist usage</li>
+                  <li>Scenario-based quoting and process walkthroughs</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="week-row reveal">
+            <div class="timeline-dot"></div>
+            <div class="week-card">
+              <div class="week-grid">
+                <div class="week-meta">
+                  <div class="week-tag">Week 3</div>
+                  <h3>Confidence Building & Client Readiness</h3>
+                  <p>
+                    The final week prepares the VA for real support work. The focus is confidence, quality checking,
+                    readiness, and smooth endorsement toward client-facing responsibilities.
+                  </p>
+                </div>
+                <ul class="week-list">
+                  <li>Advanced practice and quality control</li>
+                  <li>Shadowing and transition preparation</li>
+                  <li>Performance review and coaching</li>
+                  <li>Readiness for client-endorsed workflow support</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="client">
+      <div class="container client-grid">
+        <div class="reveal">
+          <div class="eyebrow emerald">💼 Section 03</div>
+          <h2>Working with the Client</h2>
+          <p class="client-copy">
+            Once the VA completes the classroom-based training, the next phase becomes more client-focused. At this
+            stage, there is little to no classroom discussion, and the VA learns more directly through the client’s
+            actual workflow, systems, standards, and daily task expectations.
+          </p>
+
+          <div class="mini-grid" style="margin-top: 26px;">
+            <div class="mini-card">
+              <h4>Transition Phase</h4>
+              <p>
+                The VA moves from structured internal discussion into a more realistic working setup with greater
+                exposure to live tasks and real processes.
+              </p>
+            </div>
+            <div class="mini-card">
+              <h4>Client-Led Growth</h4>
+              <p>
+                The client may continue guiding the VA based on preferred workflow, business priorities, and the
+                specific process used in their daily operation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card-pad reveal">
+          <div class="card-header">
+            <div>
+              <div class="section-kicker">Final Stage</div>
+              <h3>Operational Readiness</h3>
+            </div>
+            <div class="icon-box">🤝</div>
+          </div>
+
+          <ul class="client-list">
+            <li><span>Reduced classroom discussion and increased real-work exposure</span></li>
+            <li><span>Client onboarding into specific tasks, systems, and expectations</span></li>
+            <li><span>Performance is observed through actual workflow participation</span></li>
+            <li><span>Continuous learning through direct communication and feedback</span></li>
+            <li><span>Goal is independence, confidence, and ownership of tasks</span></li>
+          </ul>
+
+          <div class="outcome-box">
+            <h4>Outcome</h4>
+            <p>
+              By the end of this phase, the VA is expected to support the client with less dependence on classroom
+              training and stronger confidence in handling tasks according to the client’s real workflow.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Standalone single-file website • Ready to save as <strong>index.html</strong>
+    </div>
+  </div>
+
+  <script>
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('.section');
+    const revealEls = document.querySelectorAll('.reveal');
+
+    navItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        const target = item.getAttribute('data-target');
+        const section = document.getElementById(target);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navItems.forEach((item) => {
+            item.classList.toggle('active', item.getAttribute('data-target') === id);
+          });
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.18 });
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+
+    const uploadInput = document.getElementById('presentationUpload');
+    const fileName = document.getElementById('fileName');
+    const viewerStage = document.getElementById('viewerStage');
+    const viewerPlaceholder = document.getElementById('viewerPlaceholder');
+    const viewerControls = document.getElementById('viewerControls');
+    const zoomStatus = document.getElementById('zoomStatus');
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
+    const resetZoomBtn = document.getElementById('resetZoomBtn');
+    const fullScreenBtn = document.getElementById('fullScreenBtn');
+
+    let currentFileUrl = '';
+    let currentType = '';
+    let imageZoom = 1;
+    let pdfZoom = 100;
+
+    function clearViewer() {
+      if (currentFileUrl) {
+        URL.revokeObjectURL(currentFileUrl);
+      }
+      currentFileUrl = '';
+      viewerStage.innerHTML = '';
+      viewerStage.classList.remove('active');
+      viewerControls.classList.remove('active');
+      viewerPlaceholder.style.display = 'block';
+      currentType = '';
+      imageZoom = 1;
+      pdfZoom = 100;
+      zoomStatus.textContent = '100%';
+    }
+
+    function updateImageZoom() {
+      const img = viewerStage.querySelector('.viewer-image');
+      if (!img) return;
+      img.style.transform = `scale(${imageZoom})`;
+      zoomStatus.textContent = `${Math.round(imageZoom * 100)}%`;
+    }
+
+    function updatePdfZoom() {
+      const frame = viewerStage.querySelector('.viewer-pdf');
+      if (!frame || !currentFileUrl) return;
+      frame.src = `${currentFileUrl}#zoom=${pdfZoom}`;
+      zoomStatus.textContent = `${pdfZoom}%`;
+    }
+
+    uploadInput.addEventListener('change', (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      clearViewer();
+      currentFileUrl = URL.createObjectURL(file);
+      fileName.textContent = file.name;
+      viewerPlaceholder.style.display = 'none';
+      viewerStage.classList.add('active');
+      viewerControls.classList.add('active');
+
+      if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+        currentType = 'pdf';
+        pdfZoom = 100;
+        const iframe = document.createElement('iframe');
+        iframe.className = 'viewer-pdf';
+        iframe.title = 'Uploaded PDF Preview';
+        iframe.src = `${currentFileUrl}#zoom=${pdfZoom}`;
+        viewerStage.appendChild(iframe);
+        updatePdfZoom();
+      } else if (file.type.startsWith('image/')) {
+        currentType = 'image';
+        imageZoom = 1;
+        const img = document.createElement('img');
+        img.className = 'viewer-image';
+        img.alt = 'Uploaded presentation image';
+        img.src = currentFileUrl;
+        viewerStage.appendChild(img);
+        updateImageZoom();
+      } else {
+        viewerStage.innerHTML = '<div class="viewer-placeholder">This file type is not supported. Please upload a photo or PDF only.</div>';
+        viewerControls.classList.remove('active');
+        currentType = '';
+      }
+    });
+
+    zoomInBtn.addEventListener('click', () => {
+      if (currentType === 'image') {
+        imageZoom = Math.min(imageZoom + 0.2, 3);
+        updateImageZoom();
+      } else if (currentType === 'pdf') {
+        pdfZoom = Math.min(pdfZoom + 20, 300);
+        updatePdfZoom();
+      }
+    });
+
+    zoomOutBtn.addEventListener('click', () => {
+      if (currentType === 'image') {
+        imageZoom = Math.max(imageZoom - 0.2, 0.4);
+        updateImageZoom();
+      } else if (currentType === 'pdf') {
+        pdfZoom = Math.max(pdfZoom - 20, 50);
+        updatePdfZoom();
+      }
+    });
+
+    resetZoomBtn.addEventListener('click', () => {
+      if (currentType === 'image') {
+        imageZoom = 1;
+        updateImageZoom();
+      } else if (currentType === 'pdf') {
+        pdfZoom = 100;
+        updatePdfZoom();
+      }
+    });
+
+    fullScreenBtn.addEventListener('click', async () => {
+      if (!viewerStage.classList.contains('active')) return;
+      try {
+        if (!document.fullscreenElement) {
+          await viewerStage.requestFullscreen();
+        } else {
+          await document.exitFullscreen();
+        }
+      } catch (error) {
+        console.error('Fullscreen request failed.', error);
+      }
+    });
+  </script>
+</body>
+</html>
